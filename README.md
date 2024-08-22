@@ -1,7 +1,7 @@
 ## Overview 
 - This Rust project shows how to use the TFHE library to conduct homomorphic operations on encrypted data in both parallel and single-threaded execution modes. The application maintains privacy by enabling safe computation on encrypted 64-bit unsigned integers (FheUint64) without decrypting them.
 
-  ## Features
+## Features
 - **Homomorphic Operations:** Supports addition, subtraction, multiplication, and division on encrypted integers.
 - **Execution Modes:** Choose between parallel and single-threaded execution for optimized performance.
 - **Configurable Cryptographic Parameters:** Customize the security settings and error probability using the TFHE library's configuration options.
@@ -56,7 +56,7 @@
  ## Contributing
   - If you intend to contribute to this project, fork the repository and make a pull request.
 
-  ## Installation
+ ## Installation
 
 - To use this project, you need to have Rust installed on your machine.
 - If Rust is not installed, follow the instructions on the [official Rust website](https://www.rust-lang.org/tools/install) to install it.
