@@ -2,11 +2,10 @@
 - This Rust project shows how to use the TFHE library to conduct homomorphic operations on encrypted data in both parallel and single-threaded execution modes. The application maintains privacy by enabling safe computation on encrypted 64-bit unsigned integers (FheUint64) without decrypting them.
 
   ## Features
-- **Parallel and Single-Threaded Execution Modes:** Select between parallelized operations for improved performance or single-threaded execution in contexts where parallelism may not be advantageous.
-- **Optimized Homomorphic Operations:** Implementations of homomorphic addition, subtraction, multiplication, and division are provided as a foundation for future optimization.
-- **Vectorized Operations:** The efficient handling of operations on vectors of FheUint64 values.
-- **Extensible Design:** The code is designed to allow for future improvements, such as advanced cryptographic and algorithmic optimizations.
-
+- **Homomorphic Operations:** Supports addition, subtraction, multiplication, and division on encrypted integers.
+- **Execution Modes:** Choose between parallel and single-threaded execution for optimized performance.
+- **Configurable Cryptographic Parameters:** Customize the security settings and error probability using the TFHE library's configuration options.
+- **Automatic Encryption/Decryption:** Input data is automatically encrypted before computation, and results are decrypted for verification.
 ## Performance Considerations
    - Parallel execution  is often faster on multi-core platforms, especially when working with huge datasets. However, it may cause overhead in situations where the data size is small or the system has limited parallel processing capabilities.
    - Single-Threaded Mode: Use single-threaded mode when parallelism is unnecessary or when running in environments with limited resources.
@@ -15,17 +14,20 @@
 - **Efficient Resource Utilization:** Parallel processing makes the best use of available CPU cores, resulting in better resource utilization and faster execution times.
 - **Scalability:** The technique scales well with the size of the dataset and the number of operations, making it appropriate for scenarios involving enormous amounts of data.
 ## Customization
-- Execution Modes: The ExecutionMode enum lets you choose between parallel and single-threaded execution. Simply change the mode argument in the parallel_homomorphic_operations function to switch modes.
- >```
-> parallel_homomorphic_operations(ExecutionMode::Parallel)?;
-- Advanced optimizations: The code includes placeholders for advanced multiplication and division logic. More advanced algorithms can be implemented in these areas to improve performance even further.
-## Code Explanation
-- **Configuration:** ConfigBuilder is used to configure TFHE parameters.
-- **Key Generation:** generate_keys generates the client and server keys for encryption and decryption.
-- **Encryption:** FheUint64::try_encrypt encrypts plaintext values.
-- **Operations:** Implemented in the HomomorphicOps trait and its implementation for FheUint64.
+- Modify Cryptographic Parameters: Adjust the security and error probability by editing the custom_params in the parallel_homomorphic_operations function.
+- Change Execution Mode: Switch between ExecutionMode::Parallel and ExecutionMode::SingleThreaded by changing the argument in the main function.
+## Code  Structure
+- **ExecutionMode Enum:** Defines the available execution modes (Parallel and SingleThreaded).
+- **HomomorphicOps Trait:** Encapsulates the homomorphic operations (add, subtract, multiply, divide) that can be performed on encrypted integers.
+- **Implementation for FheUint64:** The HomomorphicOps trait is implemented for the FheUint64 type, supporting both parallel and single-threaded operations.
+- **Main Function:** The entry point of the program, which calls the parallel_homomorphic_operations function to perform operations using the chosen execution mode.
 - **Execution Modes:** ExecutionMode enum allows switching between parallel and single-threaded execution.
-- **Results:** Decryption and verification of results ensure correctness.
+- **Parallel Homomorphic Operations Function:**
+   - Configures the TFHE encryption parameters.
+   - Generates client and server keys.
+   - Encrypts two 64-bit integers.
+   - Performs homomorphic operations in parallel or single-threaded mode.
+   - Decrypts and verifies the results against clear-text calculations.
 
 ## Requirements
 - **Rust:** Ensure you have the latest stable version of Rust installed.
@@ -63,7 +65,7 @@
 - TFHE Library
 - Rayon
 - Rust
-  
+### Clone the repository or copy the source code into a Rust project. 
 ```bash
 git clone https://github.com/cypriansakwa/Rust_Homomorphic_Operations_Using_TFHE.git
 cd Rust_Homomorphic_Operations_Using_TFHE
