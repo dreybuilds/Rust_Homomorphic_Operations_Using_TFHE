@@ -48,6 +48,9 @@
 - To run the program and perform homomorphic operations in parallel mode, use
  >```
 >  cargo run --release --parallel
+> #if the command above raises an error,try :  
+> cargo run --release -- --parallel
+
 - To run the program and perform homomorphic operations in single-threaded mode, use:
  >```
 >  cargo run --release --single-threaded
